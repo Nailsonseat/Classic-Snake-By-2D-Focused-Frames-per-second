@@ -1,133 +1,14 @@
-#include "Nailsonseat.h"
+#include "Headers/Nailsonseat.h"
+#include "File Handler/file handler.cpp"
+#include "settings.cpp"
+#include "head.h"
+#include "body.h"
 #include <vector>
-#include <fstream>
+#include <iostream>
 
 using namespace std;
 
-class settings
-{
-	short int snake_head, body, head_col, body_col, food, food_col;
-public:
-	inline short int get_head() { return snake_head; }
-	inline short int get_body() { return body; }
-	inline short int get_head_col() { return head_col; }
-	inline short int get_body_col() { return body_col; }
-	inline short int get_food() { return food; }
-	inline short int get_food_col() { return food_col; }
-	void set_values(short int one, short int two, short int three, short int four, short int five, short int six)
-	{
-		snake_head = one;
-		body = two;
-		head_col = three;
-		body_col = four;
-		food = five;
-		food_col = six;
-	}
-};
-struct head
-{
-	wchar_t up;
-	wchar_t left;
-	wchar_t right;
-	wchar_t down;
-};
-struct body
-{
-	wchar_t left_right;
-	wchar_t up_down;
-	wchar_t up_right;
-	wchar_t up_left;
-	wchar_t down_right;
-	wchar_t down_left;
-	wchar_t left_up;
-	wchar_t left_down;
-	wchar_t right_up;
-	wchar_t right_down;
-};
-inline bool file_exist(const char* name)
-{
-	ifstream file(name);
-	return file.good();
-}
-void set_attributes(settings& toset, struct body& setbody, struct head& sethead, char* Bcol, char* Hcol, char* Fcol, wchar_t& Ftype)
-{
-	switch (toset.get_body())
-	{
-	case 1:
-		setbody.left_right = L'\x2550';
-		setbody.up_down = L'\x2551';
-		setbody.up_left = L'\x2557';
-		setbody.up_right = L'\x2554';
-		setbody.down_left = L'\x255D';
-		setbody.down_right = L'\x255A';
-		setbody.left_up = L'\x255A';
-		setbody.left_down = L'\x2554';
-		setbody.right_up = L'\x255D';
-		setbody.right_down = L'\x2557';
-		break;
-	case 2:
-		setbody.left_right = L'\x2500';
-		setbody.up_down = L'\x2502';
-		setbody.up_left = L'\x2510';
-		setbody.up_right = L'\x250C';
-		setbody.down_left = L'\x2518';
-		setbody.down_right = L'\x2514';
-		setbody.left_up = L'\x2514';
-		setbody.left_down = L'\x250C';
-		setbody.right_up = L'\x2518';
-		setbody.right_down = L'\x2510';
-		break;
-	}
-	switch (toset.get_head())
-	{
-	case 1:
-		sethead.up = L'\x02C4';
-		sethead.left = L'\x02C2';
-		sethead.right = L'\x02C3';
-		sethead.down = L'\x02C5';
-		break;
-	case 2:
-		sethead.up = L'\x25B2';
-		sethead.left = L'\x25C4';
-		sethead.right = L'\x25BA';
-		sethead.down = L'\x25BC';
-		break;
-	}
-	switch (toset.get_body_col())
-	{
-	case 1:strcpy(Bcol, "\033[38;2;255;255;255m"); break;
-	case 2:strcpy(Bcol, "\033[38;2;46;197;40m"); break;
-	case 3:strcpy(Bcol, "\033[38;2;63;186;178m"); break;
-	case 4:strcpy(Bcol, "\033[38;2;214;77;150m"); break;
-	case 5:strcpy(Bcol, "\033[38;2;200;205;56m"); break;
-	case 6:strcpy(Bcol, "\033[38;2;210;146;62m"); break;
-	case 7:strcpy(Bcol, "\033[38;2;215;43;43m"); break;
-	}
-	switch (toset.get_head_col())
-	{
-	case 1:strcpy(Hcol, "\033[38;2;255;255;255m"); break;
-	case 2:strcpy(Hcol, "\033[38;2;46;197;40m"); break;
-	case 3:strcpy(Hcol, "\033[38;2;63;186;178m"); break;
-	case 4:strcpy(Hcol, "\033[38;2;214;77;150m"); break;
-	case 5:strcpy(Hcol, "\033[38;2;200;205;56m"); break;
-	case 6:strcpy(Hcol, "\033[38;2;210;146;62m"); break;
-	case 7:strcpy(Hcol, "\033[38;2;215;43;43m"); break;
-	}
-	switch (toset.get_food_col())
-	{
-	case 1:strcpy(Fcol, "\033[38;2;255;255;255m"); break;
-	case 2:strcpy(Fcol, "\033[38;2;46;197;40m"); break;
-	case 3:strcpy(Fcol, "\033[38;2;210;146;62m"); break;
-	case 4:strcpy(Fcol, "\033[38;2;215;43;43m"); break;
-	}
-	switch (toset.get_food())
-	{
-	case 1:Ftype = L'\x25A0'; break;
-	case 2:Ftype = L'\x00D8'; break;
-	case 3:Ftype = L'\x25CF'; break;
-	case 4:Ftype = L'\x01D1'; break;
-	}
-}
+
 COORD food_generator(short int notouch1, COORD notouch2, vector <COORD> notouch3)
 {
 	int temp(0);
@@ -230,7 +111,7 @@ void delay(short int direction)
 	case 77:Sleep(80); break;
 	}
 }
-COORD snake_head(short int pos, COORD snake, struct head shape, char* colour)
+COORD snake_head(short int pos, COORD snake, head shape, char* colour)
 {
 	COORD curr = { 0,0 };
 	cout << colour;
@@ -538,44 +419,29 @@ reset:
 int main()
 {
 	fontsize(0, 30);
-	//MoveWindow(7,0);
-	//SetConsoleWindowSize(80, 25);
+	MoveWindow(7,0);
 	short int input(0), score(0), previous(0), i(0);
 	COORD food = { 0,0 }, head = { 40,12 };
 	vector <COORD> body;
 	settings data;
 	fstream file;
-	struct body shape_body;
-	struct head shape_head;
+	class body shape_body;
+	class head shape_head;
 	wchar_t food_type(NULL);
 	char body_colour[20];
 	char head_colour[20];
 	char food_colour[20];
+
 	bool bound_check(true);
-	if (!file_exist("Snake settings.dat")) 
-	{ 
-		file.open("Snake settings.dat", ios::binary | ios::out); 
-		data.set_values(1, 1, 1, 1, 1, 1);
-		file.write((char*)&data, sizeof(data));
-		set_attributes(data,shape_body,shape_head,body_colour,head_colour,food_colour,food_type);
-		file.close();
-	}
-	else
-	{
-		file.open("Snake settings.dat", ios::binary | ios::in);
-		file.read((char*)&data, sizeof(data));
-		set_attributes(data, shape_body, shape_head, body_colour, head_colour,food_colour,food_type);
-		file.close();
-	}
+	
+	file_reader(file,data);
+
+
 menu:short int ans = menu();
 	switch (ans)
 	{
 	case 6:break;
-	case 7:/*gotoxy(35, 12);
-		cout << "No options yet";
-		gotoxy(0, 0);
-		cin.ignore();
-		system("cls");*/
+	case 7:
 		options(data);
 		set_attributes(data, shape_body, shape_head, body_colour, head_colour,food_colour,food_type);
 		goto menu;
@@ -586,7 +452,8 @@ menu:short int ans = menu();
 	begin:
 	gotoxy(27, 12);
 	cout << "Press any cursor key to start";
-	do { input = _getch(); if (input == 224)input = _getch(); } while (input != 72 && input != 80 && input != 75 && input != 77);
+	do { input = _getch(); if (input == 224)input = _getch(); } 
+	while (input != 72 && input != 80 && input != 75 && input != 77);
 	system("cls");
 	food = food_generator(score,head,body);
 	gotoxy(40, 12);
