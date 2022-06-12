@@ -3,9 +3,9 @@
 #include "body.h"
 #include <string.h>
 
-settings::settings() :snake_head(1), body(1), head_col(1), body_col(1), food(1), food_col(1) {}
+Settings::Settings() :snake_head(1), body(1), head_col(1), body_col(1), food(1), food_col(1) {}
 
-void settings::set_values(short int one, short int two, short int three, short int four, short int five, short int six)
+void Settings::set_values(short int one, short int two, short int three, short int four, short int five, short int six)
 {
 	snake_head = one;
 	body = two;
@@ -15,16 +15,16 @@ void settings::set_values(short int one, short int two, short int three, short i
 	food_col = six;
 }
 
-inline short int settings::get_head(){ return snake_head; }
-inline short int settings::get_body(){ return body; }
-inline short int settings::get_head_col(){ return head_col; }
-inline short int settings::get_body_col(){ return body_col; }
-inline short int settings::get_food(){ return food; }
-inline short int settings::get_food_col() { return food_col; }
+inline short int Settings::get_head(){ return snake_head; }
+inline short int Settings::get_body(){ return body; }
+inline short int Settings::get_head_col(){ return head_col; }
+inline short int Settings::get_body_col(){ return body_col; }
+inline short int Settings::get_food(){ return food; }
+inline short int Settings::get_food_col() { return food_col; }
 
-void set_attributes(settings& toset, body& setbody, head& sethead, char* Bcol, char* Hcol, char* Fcol, wchar_t& Ftype)
+void Settings::set_attributes(class body& setbody, head& sethead, char* Bcol, char* Hcol, char* Fcol, wchar_t& Ftype)
 {
-	switch (toset.get_body())
+	switch (this->get_body())
 	{
 	case 1:
 		setbody.left_right = L'\x2550';
@@ -51,7 +51,7 @@ void set_attributes(settings& toset, body& setbody, head& sethead, char* Bcol, c
 		setbody.right_down = L'\x2510';
 		break;
 	}
-	switch (toset.get_head())
+	switch (this->get_head())
 	{
 	case 1:
 		sethead.up = L'\x02C4';
@@ -66,7 +66,7 @@ void set_attributes(settings& toset, body& setbody, head& sethead, char* Bcol, c
 		sethead.down = L'\x25BC';
 		break;
 	}
-	switch (toset.get_body_col())
+	switch (this->get_body_col())
 	{
 	case 1:strcpy(Bcol, "\033[38;2;255;255;255m"); break;
 	case 2:strcpy(Bcol, "\033[38;2;46;197;40m"); break;
@@ -76,7 +76,7 @@ void set_attributes(settings& toset, body& setbody, head& sethead, char* Bcol, c
 	case 6:strcpy(Bcol, "\033[38;2;210;146;62m"); break;
 	case 7:strcpy(Bcol, "\033[38;2;215;43;43m"); break;
 	}
-	switch (toset.get_head_col())
+	switch (this->get_head_col())
 	{
 	case 1:strcpy(Hcol, "\033[38;2;255;255;255m"); break;
 	case 2:strcpy(Hcol, "\033[38;2;46;197;40m"); break;
@@ -86,14 +86,14 @@ void set_attributes(settings& toset, body& setbody, head& sethead, char* Bcol, c
 	case 6:strcpy(Hcol, "\033[38;2;210;146;62m"); break;
 	case 7:strcpy(Hcol, "\033[38;2;215;43;43m"); break;
 	}
-	switch (toset.get_food_col())
+	switch (this->get_food_col())
 	{
 	case 1:strcpy(Fcol, "\033[38;2;255;255;255m"); break;
 	case 2:strcpy(Fcol, "\033[38;2;46;197;40m"); break;
 	case 3:strcpy(Fcol, "\033[38;2;210;146;62m"); break;
 	case 4:strcpy(Fcol, "\033[38;2;215;43;43m"); break;
 	}
-	switch (toset.get_food())
+	switch (this->get_food())
 	{
 	case 1:Ftype = L'\x25A0'; break;
 	case 2:Ftype = L'\x00D8'; break;

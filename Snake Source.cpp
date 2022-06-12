@@ -1,6 +1,6 @@
 #include "Headers/Nailsonseat.h"
 #include "File Handler/file handler.cpp"
-#include "settings.cpp"
+#include "settings.h"
 #include "head.h"
 #include "body.h"
 #include <vector>
@@ -151,7 +151,7 @@ COORD snake_head(short int pos, COORD snake, head shape, char* colour)
 	cout << "\033[0m";
 	return curr;
 }
-void options(settings& save)
+void options(Settings& save)
 {
 	COORD last = { -1,-1 };
 	short int column = 1;
@@ -420,21 +420,19 @@ int main()
 {
 	fontsize(0, 30);
 	MoveWindow(7,0);
-	short int input(0), score(0), previous(0), i(0);
+	short int input(0), score(0), previous(0);
 	COORD food = { 0,0 }, head = { 40,12 };
 	vector <COORD> body;
-	settings data;
-	fstream file;
 	class body shape_body;
 	class head shape_head;
-	wchar_t food_type(NULL);
 	char body_colour[20];
 	char head_colour[20];
 	char food_colour[20];
+	wchar_t food_type(NULL);
 
 	bool bound_check(true);
 	
-	file_reader(file,data);
+	FileReader(shape_body, shape_head, body_colour, head_colour, food_colour, food_type);
 
 
 menu:short int ans = menu();
@@ -442,8 +440,9 @@ menu:short int ans = menu();
 	{
 	case 6:break;
 	case 7:
+		Settings data;
 		options(data);
-		set_attributes(data, shape_body, shape_head, body_colour, head_colour,food_colour,food_type);
+		data.set_attributes(shape_body, shape_head, body_colour, head_colour,food_colour,food_type);
 		goto menu;
 		break;
 	case 8:cout << "Game Exited";
@@ -471,7 +470,7 @@ menu:short int ans = menu();
 			if (input == 27) break;
 			if (body.size() >= 2) 
 			{
-				for (i = short int(body.size()) - 2; i >= 0; i--)
+				for (int i = short int(body.size()) - 2; i >= 0; i--)
 				{
 					if (head.X == body[i].X && head.Y == body[i].Y)
 					{

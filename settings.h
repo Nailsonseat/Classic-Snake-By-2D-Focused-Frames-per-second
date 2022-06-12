@@ -1,5 +1,7 @@
 #pragma once
-class settings
+#include "head.h"
+#include "body.h"
+class Settings
 {
 	short int snake_head;
 	short int body;
@@ -15,6 +17,7 @@ public:
 	inline short int get_food();
 	inline short int get_food_col();
 	void set_values(short int, short int, short int, short int, short int, short int);
-	settings();
+	void set_attributes(class body&, head&, char*, char*, char*, wchar_t&);
+	Settings();
 };
 
