@@ -1,7 +1,8 @@
 #include <fstream>
 #include "../settings.h"
+#include "../file handler.h"
 
-inline bool file_exist(const char* name)
+bool file_exist(const char* name)
 {
 	std::ifstream file(name);
 	return file.good();

@@ -13,19 +13,34 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Source Files\File handler">
+    <Filter Include="Resource Files\File handler">
       <UniqueIdentifier>{243223e3-55e6-438b-b2d1-db663f3ef519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Settings">
+      <UniqueIdentifier>{0d18fc23-8ddb-4cae-86c6-2121089497f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Food Generator">
+      <UniqueIdentifier>{e3ce3072-9eb7-4e54-bea5-9aa0a0d8e895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Classes">
+      <UniqueIdentifier>{78200736-10fc-4b4a-890d-171db83206ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Options">
+      <UniqueIdentifier>{a059ad2d-dced-4414-ba55-efea1a9935e8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Snake Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="File Handler\file handler.cpp">
-      <Filter>Source Files\File handler</Filter>
+    <ClCompile Include="File Handler\File handler.cpp">
+      <Filter>Resource Files\File handler</Filter>
     </ClCompile>
-    <ClCompile Include="settings.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Settings.cpp">
+      <Filter>Resource Files\Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="Nailsonseat.cpp">
+      <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -35,14 +50,14 @@
     <ClInclude Include="settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="head.h">
+    <ClInclude Include="file handler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="body.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="head.h">
+      <Filter>Header Files\Classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

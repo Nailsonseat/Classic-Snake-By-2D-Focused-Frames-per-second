@@ -1,161 +1,21 @@
 #include "Headers/Nailsonseat.h"
-#include "File Handler/file handler.cpp"
-#include "settings.h"
+#include "file handler.h"
 #include "head.h"
 #include "body.h"
-#include <vector>
+#include "settings.h"
 #include <iostream>
+#include <vector>
+#include <fstream>
+#include <Windows.h>
+#include <conio.h>
 
 using namespace std;
 
-
-COORD food_generator(short int notouch1, COORD notouch2, vector <COORD> notouch3)
-{
-	int temp(0);
-	bool flag(true);
-	srand(int(time(0)));
-	COORD food;
-	if (!notouch1) 
-	{
-		do
-		{
-			food.X = rand() % 79;
-			food.Y = rand() % 24;
-			if (food.X >= 71 && food.X <= 79)continue;
-		} while (food.X > 43 && food.X < 37 && food.Y < 15 && food.Y > 9 && food.X <= 0 && food.X > 79 && food.Y <= 0 && food.Y > 24);
-	}
-	else if (notouch1)
-	{
-		do
-		{
-			food.X = rand() % 79;
-			food.Y = rand() % 24;
-			if (food.X >= 71 && food.X <= 79)continue;
-			if (food.X == notouch2.X && food.Y == notouch2.Y)continue;
-			for (auto temp = notouch3.begin(); temp != notouch3.end(); temp++)
-			{
-				if (temp->X == food.X && temp->Y == food.Y)flag = false;
-				else flag=true;
-			}
-		} while (food.X <= 0 && food.X > 79 && food.Y <= 0 && food.Y > 24 && !flag);
-	}
-	return food;
-}
-short int menu()
-{
-	short int input(0), output(0);
-	COORD select = { 0,0 };
-	maskcursor(true);
-	gotoxy(0, 24);
-	cout << "v5.0";
-	gotoxy(56, 24);
-	cout << "Made by - Aadarsh Verma";
-	gotoxy(27, 0);
-	cout << R"( _____             _         )";
-	gotoxy(27, 1);
-	cout << R"(/  ___|           | |        )";
-	gotoxy(27, 2);
-	cout << R"(\ `--. _ __   __ _| | _____  )";
-	gotoxy(27, 3);
-	cout << R"( `--. \ '_ \ / _` | |/ / _ \ )";
-	gotoxy(27, 4);
-	cout << R"(/\__/ / | | | (_| |   <  __/ )";
-	gotoxy(27, 5);
-	cout << R"(\____/|_| |_|\__,_|_|\_\___| )" << endl;
-	cout << " Start" << endl;
-	cout << " Options" << endl;
-	cout << " Exit";
-	gotoxy(10, 6);
-	cout << "<--";
-	gotoxy(10, 6);
-	while (!(input == 13))
-	{
-		switch ((input = _getch()))
-		{
-		case 72:getxy(select.X, select.Y);
-			maskcursor(true);
-			if (select.Y != 6)
-			{
-				cout << "   ";
-				gotoxy(10, select.Y - 1);
-				cout << "<--";
-				gotoxy(10, select.Y - 1);
-			}
-			getxy(select.X, select.Y);
-			break;
-		case 80:getxy(select.X, select.Y);
-			maskcursor(true);
-			if (select.Y != 8)
-			{
-				cout << "   ";
-				gotoxy(10, select.Y + 1);
-				cout << "<--";
-				gotoxy(10, select.Y + 1);
-			}
-			getxy(select.X, select.Y);
-			break;
-		default:if (input == 13) output = select.Y;
-			break;
-		}
-	}
-	system("cls");
-	return output;
-}
-void delay(short int direction)
-{
-	switch (direction)
-	{
-	case 72:
-	case 80:Sleep(220); break;
-	case 75:
-	case 77:Sleep(80); break;
-	}
-}
-COORD snake_head(short int pos, COORD snake, head shape, char* colour)
-{
-	COORD curr = { 0,0 };
-	cout << colour;
-	mode_u16();
-	switch (pos)
-	{
-	case 72:go_up();
-		getxy(curr.X, curr.Y);
-		wcout <<shape.up;
-		gotoxy(snake.X, snake.Y);
-		wcout << L'\x00A0';
-		gotoxy(curr.X, curr.Y);
-		break;
-	case 75:go_left();
-		getxy(curr.X, curr.Y);
-		wcout <<shape.left;
-		gotoxy(snake.X, snake.Y);
-		wcout << L'\x00A0';
-		gotoxy(curr.X, curr.Y);
-		break;
-	case 80:go_down();
-		getxy(curr.X, curr.Y);
-		wcout <<shape.down;
-		gotoxy(snake.X, snake.Y);
-		wcout << L'\x00A0';
-		gotoxy(curr.X, curr.Y);
-		break;
-	case 77:go_right();
-		getxy(curr.X, curr.Y);
-		wcout <<shape.right;
-		gotoxy(snake.X, snake.Y);
-		wcout << L'\x00A0';
-		gotoxy(curr.X, curr.Y);
-		break;
-	}
-	mode_ascii();
-	cout << "\033[0m";
-	return curr;
-}
 void options(Settings& save)
 {
 	COORD last = { -1,-1 };
 	short int column = 1;
-	fstream file;
+	std::fstream file;
 	short int input(0);
 	char H_col[20];
 	char B_col[20];
@@ -351,7 +211,7 @@ reset:
 			else if (column == 2)gotoxy(38, last.Y);
 			else if (column == 3)gotoxy(59, last.Y);
 			cout << "-->";
-			if(last.Y!=23)column++;
+			if (last.Y != 23)column++;
 			getxy(last.X, last.Y);
 			break;
 		case 75:
@@ -390,13 +250,13 @@ reset:
 		  else if (last.Y == 19)save.set_values(save.get_head(), save.get_body(), save.get_head_col(), save.get_body_col(), save.get_food(), 3);
 		  else if (last.Y == 21)save.set_values(save.get_head(), save.get_body(), save.get_head_col(), save.get_body_col(), save.get_food(), 4);
 		break;
-	case 3:if(last.Y==6)save.set_values(save.get_head(), save.get_body(), 1, save.get_body_col(), save.get_food(), save.get_food_col());
-		  else if(last.Y==8)save.set_values(save.get_head(), save.get_body(), 2, save.get_body_col(), save.get_food(), save.get_food_col());
-		  else if(last.Y==10)save.set_values(save.get_head(), save.get_body(), 3, save.get_body_col(), save.get_food(), save.get_food_col());
-		  else if(last.Y==12)save.set_values(save.get_head(), save.get_body(), 4, save.get_body_col(), save.get_food(), save.get_food_col());
-		  else if(last.Y==14)save.set_values(save.get_head(), save.get_body(), 5, save.get_body_col(), save.get_food(), save.get_food_col());
-		  else if(last.Y==16)save.set_values(save.get_head(), save.get_body(), 6, save.get_body_col(), save.get_food(), save.get_food_col());
-		  else if(last.Y==18)save.set_values(save.get_head(), save.get_body(), 7, save.get_body_col(), save.get_food(), save.get_food_col());
+	case 3:if (last.Y == 6)save.set_values(save.get_head(), save.get_body(), 1, save.get_body_col(), save.get_food(), save.get_food_col());
+		  else if (last.Y == 8)save.set_values(save.get_head(), save.get_body(), 2, save.get_body_col(), save.get_food(), save.get_food_col());
+		  else if (last.Y == 10)save.set_values(save.get_head(), save.get_body(), 3, save.get_body_col(), save.get_food(), save.get_food_col());
+		  else if (last.Y == 12)save.set_values(save.get_head(), save.get_body(), 4, save.get_body_col(), save.get_food(), save.get_food_col());
+		  else if (last.Y == 14)save.set_values(save.get_head(), save.get_body(), 5, save.get_body_col(), save.get_food(), save.get_food_col());
+		  else if (last.Y == 16)save.set_values(save.get_head(), save.get_body(), 6, save.get_body_col(), save.get_food(), save.get_food_col());
+		  else if (last.Y == 18)save.set_values(save.get_head(), save.get_body(), 7, save.get_body_col(), save.get_food(), save.get_food_col());
 		break;
 	case 4:if (last.Y == 6)save.set_values(save.get_head(), save.get_body(), save.get_head_col(), 1, save.get_food(), save.get_food_col());
 		  else if (last.Y == 8)save.set_values(save.get_head(), save.get_body(), save.get_head_col(), 2, save.get_food(), save.get_food_col());
@@ -409,13 +269,156 @@ reset:
 	}
 	if (last.X == 30 && last.Y == 23)
 	{
-		file.open("Snake settings.dat", ios::binary | ios::out);
+		file.open("Snake settings.dat", std::ios::binary | std::ios::out);
 		file.write((char*)&save, sizeof(save));
 		file.close();
 	}
 	else { last.X -= 3; goto reset; }
 	system("cls");
 }
+COORD food_generator(short int notouch1, COORD notouch2, std::vector <COORD> notouch3)
+{
+	int temp(0);
+	bool flag(true);
+	srand(int(time(0)));
+	COORD food({ 0,0 });
+	if (!notouch1)
+	{
+		do
+		{
+			food.X = rand() % 79;
+			food.Y = rand() % 24;
+			if (food.X >= 71 && food.X <= 79)continue;
+		} while (food.X > 43 && food.X < 37 && food.Y < 15 && food.Y > 9 && food.X <= 0 && food.X > 79 && food.Y <= 0 && food.Y > 24);
+	}
+	else if (notouch1)
+	{
+		do
+		{
+			food.X = rand() % 79;
+			food.Y = rand() % 24;
+			if (food.X >= 71 && food.X <= 79)continue;
+			if (food.X == notouch2.X && food.Y == notouch2.Y)continue;
+			for (auto temp = notouch3.begin(); temp != notouch3.end(); temp++)
+			{
+				if (temp->X == food.X && temp->Y == food.Y)flag = false;
+				else flag = true;
+			}
+		} while (food.X <= 0 && food.X > 79 && food.Y <= 0 && food.Y > 24 && !flag);
+	}
+	return food;
+}
+short int menu()
+{
+	short int input(0), output(0);
+	COORD select = { 0,0 };
+	maskcursor(true);
+	gotoxy(0, 24);
+	cout << "v5.0";
+	gotoxy(56, 24);
+	cout << "Made by - Aadarsh Verma";
+	gotoxy(27, 0);
+	cout << R"( _____             _         )";
+	gotoxy(27, 1);
+	cout << R"(/  ___|           | |        )";
+	gotoxy(27, 2);
+	cout << R"(\ `--. _ __   __ _| | _____  )";
+	gotoxy(27, 3);
+	cout << R"( `--. \ '_ \ / _` | |/ / _ \ )";
+	gotoxy(27, 4);
+	cout << R"(/\__/ / | | | (_| |   <  __/ )";
+	gotoxy(27, 5);
+	cout << R"(\____/|_| |_|\__,_|_|\_\___| )" << endl;
+	cout << " Start" << endl;
+	cout << " Options" << endl;
+	cout << " Exit";
+	gotoxy(10, 6);
+	cout << "<--";
+	gotoxy(10, 6);
+	while (!(input == 13))
+	{
+		switch ((input = _getch()))
+		{
+		case 72:getxy(select.X, select.Y);
+			maskcursor(true);
+			if (select.Y != 6)
+			{
+				cout << "   ";
+				gotoxy(10, select.Y - 1);
+				cout << "<--";
+				gotoxy(10, select.Y - 1);
+			}
+			getxy(select.X, select.Y);
+			break;
+		case 80:getxy(select.X, select.Y);
+			maskcursor(true);
+			if (select.Y != 8)
+			{
+				cout << "   ";
+				gotoxy(10, select.Y + 1);
+				cout << "<--";
+				gotoxy(10, select.Y + 1);
+			}
+			getxy(select.X, select.Y);
+			break;
+		default:if (input == 13) output = select.Y;
+			break;
+		}
+	}
+	system("cls");
+	return output;
+}
+void delay(short int direction)
+{
+	switch (direction)
+	{
+	case 72:
+	case 80:Sleep(220); break;
+	case 75:
+	case 77:Sleep(80); break;
+	}
+}
+COORD snake_head(short int pos, COORD snake, head shape, char* colour)
+{
+	COORD curr = { 0,0 };
+	cout << colour;
+	mode_u16();
+	switch (pos)
+	{
+	case 72:go_up();
+		getxy(curr.X, curr.Y);
+		wcout <<shape.up;
+		gotoxy(snake.X, snake.Y);
+		wcout << L'\x00A0';
+		gotoxy(curr.X, curr.Y);
+		break;
+	case 75:go_left();
+		getxy(curr.X, curr.Y);
+		wcout <<shape.left;
+		gotoxy(snake.X, snake.Y);
+		wcout << L'\x00A0';
+		gotoxy(curr.X, curr.Y);
+		break;
+	case 80:go_down();
+		getxy(curr.X, curr.Y);
+		wcout <<shape.down;
+		gotoxy(snake.X, snake.Y);
+		wcout << L'\x00A0';
+		gotoxy(curr.X, curr.Y);
+		break;
+	case 77:go_right();
+		getxy(curr.X, curr.Y);
+		wcout <<shape.right;
+		gotoxy(snake.X, snake.Y);
+		wcout << L'\x00A0';
+		gotoxy(curr.X, curr.Y);
+		break;
+	}
+	mode_ascii();
+	cout << "\033[0m";
+	return curr;
+}
+
 int main()
 {
 	fontsize(0, 30);
@@ -431,16 +434,14 @@ int main()
 	wchar_t food_type(NULL);
 
 	bool bound_check(true);
-	
+	Settings data;
 	FileReader(shape_body, shape_head, body_colour, head_colour, food_colour, food_type);
-
 
 menu:short int ans = menu();
 	switch (ans)
 	{
 	case 6:break;
 	case 7:
-		Settings data;
 		options(data);
 		data.set_attributes(shape_body, shape_head, body_colour, head_colour,food_colour,food_type);
 		goto menu;
