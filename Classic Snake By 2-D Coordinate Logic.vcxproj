@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="File Handler\File handler.cpp" />
     <ClCompile Include="Nailsonseat.cpp" />
+    <ClCompile Include="Options.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Snake Source.cpp" />
   </ItemGroup>
@@ -137,6 +138,7 @@
     <ClInclude Include="head.h" />
     <ClInclude Include="file handler.h" />
     <ClInclude Include="Headers\Nailsonseat.h" />
+    <ClInclude Include="options.h" />
     <ClInclude Include="settings.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
