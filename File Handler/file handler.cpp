@@ -1,6 +1,6 @@
 #include <fstream>
-#include "../settings.h"
-#include "../file handler.h"
+#include "../Headers/settings.h"
+#include "../Headers/file handler.h"
 
 bool file_exist(const char* name)
 {

@@ -22,14 +22,14 @@
     <Filter Include="Resource Files\Food Generator">
       <UniqueIdentifier>{e3ce3072-9eb7-4e54-bea5-9aa0a0d8e895}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Classes">
-      <UniqueIdentifier>{78200736-10fc-4b4a-890d-171db83206ac}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Options">
       <UniqueIdentifier>{a059ad2d-dced-4414-ba55-efea1a9935e8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files\Menu">
       <UniqueIdentifier>{b7a830e9-71ba-4d5b-aba6-24a83f597461}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{78200736-10fc-4b4a-890d-171db83206ac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -39,19 +39,19 @@
     <ClCompile Include="File Handler\File handler.cpp">
       <Filter>Resource Files\File handler</Filter>
     </ClCompile>
-    <ClCompile Include="Settings.cpp">
+    <ClCompile Include="Resources\Settings.cpp">
       <Filter>Resource Files\Settings</Filter>
     </ClCompile>
-    <ClCompile Include="Nailsonseat.cpp">
+    <ClCompile Include="Resources\Nailsonseat.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="Options.cpp">
+    <ClCompile Include="Resources\Options.cpp">
       <Filter>Resource Files\Options</Filter>
     </ClCompile>
-    <ClCompile Include="Food Generator.cpp">
+    <ClCompile Include="Resources\Food Generator.cpp">
       <Filter>Resource Files\Food Generator</Filter>
     </ClCompile>
-    <ClCompile Include="Display.cpp">
+    <ClCompile Include="Resources\Display.cpp">
       <Filter>Resource Files\Menu</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,25 +59,25 @@
     <ClInclude Include="Headers\Nailsonseat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="settings.h">
+    <ClInclude Include="Headers\settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="file handler.h">
+    <ClInclude Include="Headers\file handler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="body.h">
-      <Filter>Header Files\Classes</Filter>
+    <ClInclude Include="Classes\body.h">
+      <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="head.h">
-      <Filter>Header Files\Classes</Filter>
+    <ClInclude Include="Classes\head.h">
+      <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="options.h">
+    <ClInclude Include="Headers\options.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="food generator.h">
+    <ClInclude Include="Headers\food generator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="menu.h">
+    <ClInclude Include="Headers\menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

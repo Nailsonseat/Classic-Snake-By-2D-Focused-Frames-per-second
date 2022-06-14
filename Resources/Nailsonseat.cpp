@@ -1,4 +1,4 @@
-#include "Headers/Nailsonseat.h"
+#include "../Headers/Nailsonseat.h"
 #include <windows.h>
 #include <conio.h>
 #include <time.h>

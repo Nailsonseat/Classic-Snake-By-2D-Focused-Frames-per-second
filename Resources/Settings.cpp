@@ -1,6 +1,6 @@
-#include "settings.h"
-#include "head.h"
-#include "body.h"
+#include "../Headers/settings.h"
+#include "../Classes/head.h"
+#include "../Classes/body.h"
 #include <string.h>
 
 Settings::Settings() :snake_head(1), body(1), head_col(1), body_col(1), food(1), food_col(1) {}

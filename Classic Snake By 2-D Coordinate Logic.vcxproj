@@ -127,23 +127,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Display.cpp" />
+    <ClCompile Include="Resources\Display.cpp" />
     <ClCompile Include="File Handler\File handler.cpp" />
-    <ClCompile Include="Food Generator.cpp" />
-    <ClCompile Include="Nailsonseat.cpp" />
-    <ClCompile Include="Options.cpp" />
-    <ClCompile Include="Settings.cpp" />
+    <ClCompile Include="Resources\Food Generator.cpp" />
+    <ClCompile Include="Resources\Nailsonseat.cpp" />
+    <ClCompile Include="Resources\Options.cpp" />
+    <ClCompile Include="Resources\Settings.cpp" />
     <ClCompile Include="Snake Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="body.h" />
-    <ClInclude Include="food generator.h" />
-    <ClInclude Include="head.h" />
-    <ClInclude Include="file handler.h" />
+    <ClInclude Include="Classes\body.h" />
+    <ClInclude Include="Headers\food generator.h" />
+    <ClInclude Include="Classes\head.h" />
+    <ClInclude Include="Headers\file handler.h" />
     <ClInclude Include="Headers\Nailsonseat.h" />
-    <ClInclude Include="menu.h" />
-    <ClInclude Include="options.h" />
-    <ClInclude Include="settings.h" />
+    <ClInclude Include="Headers\menu.h" />
+    <ClInclude Include="Headers\options.h" />
+    <ClInclude Include="Headers\settings.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

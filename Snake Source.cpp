@@ -1,10 +1,10 @@
 #include "Headers/Nailsonseat.h"
-#include "file handler.h"
+#include "Headers/file handler.h"
 #include <iostream>
-#include "food generator.h"
+#include "Headers/food generator.h"
 #include <conio.h>
-#include "options.h"
-#include "menu.h"
+#include "Headers/options.h"
+#include "Headers/menu.h"
 
 using namespace std;
 

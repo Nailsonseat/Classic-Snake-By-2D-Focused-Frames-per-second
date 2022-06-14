@@ -1,4 +1,4 @@
-#include "food generator.h"
+#include "../Headers/food generator.h"
 #include <iostream>
 
 COORD food_generator(short int notouch1, COORD notouch2, std::vector <COORD> notouch3)

@@ -1,5 +1,5 @@
-#include "Headers/Nailsonseat.h"
-#include "options.h"
+#include "../Headers/Nailsonseat.h"
+#include "../Headers/options.h"
 #include <Windows.h>
 #include <iostream>
 #include <fstream>

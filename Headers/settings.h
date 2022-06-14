@@ -1,6 +1,6 @@
 #pragma once
-#include "head.h"
-#include "body.h"
+#include "../Classes/body.h"
+#include "../Classes/head.h"
 class Settings
 {
 	short int snake_head;
