@@ -28,6 +28,9 @@
     <Filter Include="Resource Files\Options">
       <UniqueIdentifier>{a059ad2d-dced-4414-ba55-efea1a9935e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Menu">
+      <UniqueIdentifier>{b7a830e9-71ba-4d5b-aba6-24a83f597461}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Snake Source.cpp">
@@ -47,6 +50,9 @@
     </ClCompile>
     <ClCompile Include="Food Generator.cpp">
       <Filter>Resource Files\Food Generator</Filter>
+    </ClCompile>
+    <ClCompile Include="Display.cpp">
+      <Filter>Resource Files\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="food generator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
