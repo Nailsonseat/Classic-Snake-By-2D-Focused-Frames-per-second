@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="File Handler\File handler.cpp" />
+    <ClCompile Include="Food Generator.cpp" />
     <ClCompile Include="Nailsonseat.cpp" />
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="Settings.cpp" />
@@ -135,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="body.h" />
+    <ClInclude Include="food generator.h" />
     <ClInclude Include="head.h" />
     <ClInclude Include="file handler.h" />
     <ClInclude Include="Headers\Nailsonseat.h" />

@@ -45,6 +45,9 @@
     <ClCompile Include="Options.cpp">
       <Filter>Resource Files\Options</Filter>
     </ClCompile>
+    <ClCompile Include="Food Generator.cpp">
+      <Filter>Resource Files\Food Generator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Nailsonseat.h">
@@ -63,6 +66,9 @@
       <Filter>Header Files\Classes</Filter>
     </ClInclude>
     <ClInclude Include="options.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="food generator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

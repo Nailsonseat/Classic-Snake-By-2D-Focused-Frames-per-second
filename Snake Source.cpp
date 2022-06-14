@@ -1,45 +1,12 @@
 #include "Headers/Nailsonseat.h"
 #include "file handler.h"
 #include <iostream>
-#include <vector>
-#include <Windows.h>
+#include "food generator.h"
 #include <conio.h>
 #include "options.h"
 
 using namespace std;
 
-COORD food_generator(short int notouch1, COORD notouch2, std::vector <COORD> notouch3)
-{
-	int temp(0);
-	bool flag(true);
-	srand(int(time(0)));
-	COORD food({ 0,0 });
-	if (!notouch1)
-	{
-		do
-		{
-			food.X = rand() % 79;
-			food.Y = rand() % 24;
-			if (food.X >= 71 && food.X <= 79)continue;
-		} while (food.X > 43 && food.X < 37 && food.Y < 15 && food.Y > 9 && food.X <= 0 && food.X > 79 && food.Y <= 0 && food.Y > 24);
-	}
-	else if (notouch1)
-	{
-		do
-		{
-			food.X = rand() % 79;
-			food.Y = rand() % 24;
-			if (food.X >= 71 && food.X <= 79)continue;
-			if (food.X == notouch2.X && food.Y == notouch2.Y)continue;
-			for (auto temp = notouch3.begin(); temp != notouch3.end(); temp++)
-			{
-				if (temp->X == food.X && temp->Y == food.Y)flag = false;
-				else flag = true;
-			}
-		} while (food.X <= 0 && food.X > 79 && food.Y <= 0 && food.Y > 24 && !flag);
-	}
-	return food;
-}
 short int menu()
 {
 	short int input(0), output(0);
@@ -145,8 +112,10 @@ int main()
 {
 	fontsize(0, 30);
 	MoveWindow(7,0);
+
 	short int input(0), score(0), previous(0);
 	COORD food = { 0,0 }, head = { 40,12 };
+
 	vector <COORD> body;
 	class body shape_body;
 	class head shape_head;
